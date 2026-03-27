@@ -24,8 +24,10 @@ android {
             abiFilters += listOf("arm64-v8a")
         }
 
-        // 只保留中文和英文资源，剔除其他语言
-        resConfigs("zh", "en", "xxhdpi")
+        // 语言过滤 (新写法)
+        androidResources {
+            localeFilters.addAll("en", "zh")
+        }
     }
 
     buildTypes {

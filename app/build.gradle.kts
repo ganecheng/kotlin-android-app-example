@@ -24,7 +24,7 @@ android {
             abiFilters += listOf("arm64-v8a")
         }
 
-        // 语言过滤 (新写法)
+        // 语言过滤
         androidResources {
             localeFilters += listOf("en", "zh")
         }
@@ -55,6 +55,10 @@ android {
     }
 }
 
+ksp {
+    arg("room.schemaLocation", "$projectDir/schemas")
+}
+
 configurations.all {
     exclude(group = "com.google.code.findbugs", module = "jsr305")
     exclude(group = "com.google.errorprone", module = "error_prone_annotations")
@@ -81,6 +85,13 @@ dependencies {
     implementation(libs.hilt.android)
     implementation(libs.hilt.navigation.compose)
     ksp(libs.hilt.compiler)
+
+    implementation(libs.room.runtime)
+    implementation(libs.room.ktx)
+    ksp(libs.room.compiler)
+
+    implementation(libs.kotlinx.coroutines.core)
+    implementation(libs.kotlinx.coroutines.android)
 
     implementation(libs.coil.compose)
     implementation(libs.datastore.preferences)

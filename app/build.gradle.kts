@@ -26,7 +26,7 @@ android {
 
         // 语言过滤 (新写法)
         androidResources {
-            localeFilters.addAll("en", "zh")
+            localeFilters += listOf("en", "zh")
         }
     }
 
